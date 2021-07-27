@@ -1,8 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
-import IPython
 import requests
-from pprint import pprint
 from random import randint
 import json
 import os

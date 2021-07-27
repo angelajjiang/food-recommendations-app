@@ -5,9 +5,68 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  text-align: center;
+  left: calc(50% - 1600px/2 - 0.5px);
+  top: calc(50% - 709px/2);
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.front-background-image {
+  height: 750px;
+  background-image: url("asianFoodSpread.jpg");
+  background-color: #cccccc;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  opacity: 80%;
+  text-shadow: 2px 2px 8px #000000;
+}
+.frontPageDescription{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 140.62%;
+  color: #FFFFFF;
+  opacity: 1;
+
+}
+#Title {
+  padding-top: 10%;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 80px;
+  line-height: 140.62%;
+  /* or 101px */
+  text-align: center;
+
+  color: #FFFFFF;
+}
+#frontGoButton{
+  background-color: #f4511e;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.8;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#frontGoButton:hover {opacity: 1}

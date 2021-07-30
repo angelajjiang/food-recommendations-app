@@ -14,14 +14,14 @@ class AroundBerkeley extends React.Component {
 
   async getRestaurant(event) {
     event.preventDefault();
-    let response = await fetch("http://localhost:5000", {
+    let response = await fetch("http://localhost:5000/restaurants", {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(this.state)
-    })
+    });
     let data = await response.json();
     data = JSON.stringify(data);
-    // data = JSON.parse(data);
+    data = JSON.parse(data);
     this.setState({yelpData: data});
   }
 

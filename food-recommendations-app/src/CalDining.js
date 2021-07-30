@@ -17,7 +17,7 @@ class CalDining extends React.Component {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(this.state)
-    })
+    });
     let data = await response.json();
     data = JSON.stringify(data);
     // data = JSON.parse(data);

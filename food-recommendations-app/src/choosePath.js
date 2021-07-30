@@ -1,45 +1,67 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import CalDining from './CalDining';
+import AroundBerkeley from './AroundBerkeley';
 
 class ChoosePath extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      dininghall: false,
-      restaurant: false
+      choice: 0
     };
+    this.diningHalls = this.diningHalls.bind(this);
+    this.restaurants = this.restaurants.bind(this);
   }
-  render(){
-    return (
-      <div>
-        <div className="topnav">
-          <li style={{float:'left'}}><a href="index.html">Home</a></li>
-          <li style={{float:'left'}}><a href="CalDining.html">CalDining</a></li>
-          <li style={{float:'left'}}><a href="AroundBerkeley.html">Around Berkeley</a></li>
-          <li style={{float:'right'}}><a href="#profile">Profile</a></li>
-        </div>
-        <h2 class="BerkeleyEatinGood">Berkeley Eatin Good</h2>
-        <p id = "chooseDescription">Choose one of the options below :)</p>
-        <div className = "imageOptions">
-          <div className ="CalDining-image">
-            <a href="CalDining.html">
-              <img border="0" alt="CalDining" src="food spread bowls.jpg" width="450" height="350"/>
-            </a>
-            <h3 className = "imageLabel">CalDining</h3>
-          </div>
 
-          <div className ="AroundBerkeley-image">
-            <a href="AroundBerkeley.html">
-              <img border="0" alt="Around Berkeley" src="breakfast spread.jpg" width="450" height="350"/>
-            </a>
-            <h3 className = "imageLabel"> Around Berkeley</h3>
+  async diningHalls(event) {
+    event.preventDefault();
+    this.setState({choice: 1});
+  }
+  async restaurants(event) {
+    event.preventDefault();
+    this.setState({choice: 2});
+  }
+
+  render(){
+    if (this.state.choice === 0) {
+      return (
+        <div>
+          <div className="topnav">
+            <li style={{float:'left'}}><a href="index.html">Home</a></li>
+            <li style={{float:'left'}}><a href="CalDining.html">CalDining</a></li>
+            <li style={{float:'left'}}><a href="AroundBerkeley.html">Around Berkeley</a></li>
+            <li style={{float:'right'}}><a href="#profile">Profile</a></li>
+          </div>
+          <h2 class="BerkeleyEatinGood">Berkeley Eatin Good</h2>
+          <p id = "chooseDescription">Choose one of the options below :)</p>
+          <div className = "imageOptions">
+            <div className ="CalDining-image">
+              {/* <a href="CalDining.html"> */}
+                <img border="0" alt="CalDining" src="food spread bowls.jpg" width="450" height="350" onClick={this.diningHalls}/>
+              {/* </a> */}
+              <h3 className = "imageLabel">CalDining</h3>
+            </div>
+
+            <div className ="AroundBerkeley-image">
+              {/* <a href="AroundBerkeley.html"> */}
+                <img border="0" alt="Around Berkeley" src="breakfast spread.jpg" width="450" height="350" onClick={this.restaurants}/>
+              {/* </a> */}
+              <h3 className = "imageLabel"> Around Berkeley</h3>
+            </div>
           </div>
         </div>
-      </div>
-    );}
+      );
+    } else if (this.state.choice === 1) {
+      return (
+        <CalDining/>
+      );
+    } else if (this.state.choice === 2) {
+      return (
+        <AroundBerkeley/>
+      );
+    }
+  }
 }
 
 // If you want to start measuring performance in your app, pass a function

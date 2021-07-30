@@ -11,7 +11,7 @@ cors = CORS(app)
 yelp_api_key = os.environ['YELP_TOKEN']
 caldining_api_key = os.environ['CALDINING_TOKEN']
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["POST"])
 def dining_hall_rec():
     url = "https://caldining.p.rapidapi.com/menu"
     headers = {
@@ -22,7 +22,7 @@ def dining_hall_rec():
     result = json.loads(json.loads(response.text))
     return json.dumps(result, indent = 2)
 
-@app.route("/restaurants", methods=["GET", "POST"])
+@app.route("/restaurants", methods=["POST"])
 def random_yelp_rec():
     search = "food"
     # Default Berkeley coordinates

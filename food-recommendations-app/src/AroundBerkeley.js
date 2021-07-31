@@ -28,12 +28,6 @@ class AroundBerkeley extends React.Component {
   render() {
     return (
       <div>
-        <div className="topnav">
-          <li style={{float:'left'}}><a href="index.html">Home</a></li>
-          <li style={{float:'left'}}><a href="CalDining.html">CalDining</a></li>
-          <li style={{float:'left'}}><a href="AroundBerkeley.html">Around Berkeley</a></li>
-          <li style={{float:'right'}}><a href="#profile">Profile</a></li>
-        </div>
         <button type = "button" id = "frontGoButton" onClick={this.getRestaurant}>
           Get suggestion
         </button>

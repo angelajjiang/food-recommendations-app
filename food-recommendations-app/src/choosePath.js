@@ -10,29 +10,31 @@ class ChoosePath extends React.Component {
     this.state = {
       choice: 0
     };
+    this.home = this.home.bind(this);
     this.diningHalls = this.diningHalls.bind(this);
     this.restaurants = this.restaurants.bind(this);
+  }
+
+  async home(event) {
+    event.preventDefault();
+    this.setState({choice: 0});
   }
 
   async diningHalls(event) {
     event.preventDefault();
     this.setState({choice: 1});
   }
+
   async restaurants(event) {
     event.preventDefault();
     this.setState({choice: 2});
   }
 
   render(){
+    var content;
     if (this.state.choice === 0) {
-      return (
+      content =
         <div>
-          <div className="topnav">
-            <li style={{float:'left'}}><a href="index.html">Home</a></li>
-            <li style={{float:'left'}}><a href="CalDining.html">CalDining</a></li>
-            <li style={{float:'left'}}><a href="AroundBerkeley.html">Around Berkeley</a></li>
-            <li style={{float:'right'}}><a href="#profile">Profile</a></li>
-          </div>
           <h2 class="BerkeleyEatinGood">Berkeley Eatin Good</h2>
           <p id = "chooseDescription">Choose one of the options below :)</p>
           <div className = "imageOptions">
@@ -50,17 +52,23 @@ class ChoosePath extends React.Component {
               <h3 className = "imageLabel"> Around Berkeley</h3>
             </div>
           </div>
-        </div>
-      );
+        </div> ;
     } else if (this.state.choice === 1) {
-      return (
-        <CalDining/>
-      );
+      content = <CalDining/>;
     } else if (this.state.choice === 2) {
-      return (
-        <AroundBerkeley/>
-      );
+      content = <AroundBerkeley/>;
     }
+    return (
+      <div>
+        <div className="topnav">
+          <li style={{float:'left'}} onClick={this.home}><a href="index.html">Home</a></li>
+          <li style={{float:'left'}} onClick={this.diningHalls}><a href="CalDining.html">CalDining</a></li>
+          <li style={{float:'left'}} onClick={this.restaurants}><a href="AroundBerkeley.html">Around Berkeley</a></li>
+          <li style={{float:'right'}}><a href="#profile">Profile</a></li>
+        </div>
+        {content}
+      </div>
+    );  
   }
 }
 

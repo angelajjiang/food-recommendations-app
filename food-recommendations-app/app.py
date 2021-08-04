@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 import requests
 from random import randint
@@ -24,21 +24,27 @@ def dining_hall_rec():
 
 @app.route("/restaurants", methods=["GET", "POST"])
 def random_yelp_rec():
-    search = "food"
+    if request.method == "POST":
+        search = request.json['type']
+        price = request.json['price']
+        rating = int(request.json['rating'])
+        distance = int(request.json['distance'])
     # Default Berkeley coordinates
-    latitude = 37.866948799999996
-    longitude = -122.2531663
-    headers = {'Authorization': 'Bearer %s' % yelp_api_key}
-    r = requests.request('GET', f"https://api.yelp.com/v3/businesses/search?term={search}&latitude={latitude}&longitude={longitude}", headers=headers, params=None)
-    places = r.json()  
-    new_places = []
-    for business in places['businesses']:
-        if business['rating'] >= 4 and not business['is_closed'] and business['distance'] < 1609:
-            new_places.append(business)
-    number = len(new_places)
-    pick = randint(0, number - 1)
-    choice = new_places[pick]["name"]
-    return json.dumps(choice)
+        latitude = 37.866948799999996
+        longitude = -122.2531663
+
+        headers = {'Authorization': 'Bearer %s' % yelp_api_key}
+        r = requests.request('GET', f"https://api.yelp.com/v3/businesses/search?term={search}&latitude={latitude}&longitude={longitude}", headers=headers, params=None)
+        places = r.json()  
+        new_places = []
+        for business in places['businesses']:
+            if business['rating'] >= rating and not business['is_closed'] and business['distance'] < distance:
+                if 'price' in business.keys() and business['price'] == price:
+                    new_places.append(business)
+        number = len(new_places)
+        pick = randint(0, number - 1)
+        choice = new_places[pick]["name"]
+        return json.dumps(choice)
 
 if __name__=="__main__":
     app.run()

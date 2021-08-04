@@ -8,10 +8,10 @@ class AroundBerkeley extends React.Component {
     super(props);
     this.state = {
       yelpData: null,
-      type: null,
-      price: null,
-      rating: null,
-      distance: null
+      type: '',
+      price: '$',
+      rating: '1',
+      distance: ''
     };
     this.setType = this.setType.bind(this);
     this.setPrice = this.setPrice.bind(this);
@@ -42,7 +42,6 @@ class AroundBerkeley extends React.Component {
     });
     let data = await response.json();
     data = JSON.stringify(data);
-    data = JSON.parse(data);
     this.setState({yelpData: data});
   }
 

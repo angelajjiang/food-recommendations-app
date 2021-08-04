@@ -43,7 +43,7 @@ def random_yelp_rec():
                     new_places.append(business)
         number = len(new_places)
         pick = randint(0, number - 1)
-        choice = new_places[pick]["name"]
+        choice = new_places[pick]
         return json.dumps(choice)
 
 if __name__=="__main__":
